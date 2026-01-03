@@ -7,28 +7,24 @@
     <meta name="author" content="Maison Familiale Lamagistère">
     <title>Maison Familiale - Gîte avec Piscine à Lamagistère | Proche CNPE</title>
 
-    <!-- Polices d'écriture Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS (Framework pour le design) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- FontAwesome (Icônes) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Configuration Tailwind personnalisée -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            green: '#4A6741', // Vert nature / volets
+                            green: '#4A6741',
                             dark: '#2C3E28',
-                            gold: '#D4A373', // Touche premium bois/terre
-                            beige: '#F9F9F7', // Fond chaleureux
+                            gold: '#D4A373',
+                            beige: '#F9F9F7',
                         }
                     },
                     fontFamily: {
@@ -40,30 +36,31 @@
         }
     </script>
 
-    <!-- Styles CSS personnalisés pour ajustements fins -->
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; color: #333; background-color: #F9F9F7; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         
+        /* OPTIMISATION 1 : Passage en WebP pour l'image de fond principale */
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('1.jpeg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('1.webp');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Effet parallaxe simple */
+            background-attachment: fixed;
+        }
+        /* Fallback pour les vieux navigateurs si besoin (optionnel) */
+        .no-webp .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('1.jpeg');
         }
 
-        /* Effet sur les images de la galerie */
         .gallery-item { cursor: pointer; transition: transform 0.3s ease; overflow: hidden; border-radius: 8px; }
         .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item img { transition: transform 0.3s ease; width: 100%; height: 100%; object-fit: cover; }
 
-        /* Lightbox simple */
         #lightbox { display: none; }
         #lightbox.active { display: flex; }
     </style>
 
-    <!-- Données structurées SEO (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -89,17 +86,15 @@
 </head>
 <body class="antialiased">
 
-    <!-- A) HEADER FIXE -->
     <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300">
         <div class="container mx-auto px-4 py-2 flex justify-between items-center">
-            <!-- Logo / Nom -->
             <a href="#" class="flex items-center">
                 <img src="logo.png" 
                      alt="Logo Gîte Lamagistère" 
+                     width="100" height="64"
                      class="h-16 w-auto object-contain rounded-lg">
             </a>
 
-            <!-- Navigation Desktop -->
             <nav class="hidden md:flex gap-6 font-medium text-gray-700">
                 <a href="#gite" class="hover:text-brand-green transition">Le Gîte</a>
                 <a href="#chambres" class="hover:text-brand-green transition">Chambres</a>
@@ -109,20 +104,17 @@
                 <a href="#localisation" class="hover:text-brand-green transition">Localisation</a>
             </nav>
 
-            <!-- Bouton CTA Header -->
             <div class="hidden md:block">
                 <a href="#reserver" class="bg-brand-green text-white px-5 py-2 rounded-full font-bold hover:bg-brand-dark transition shadow-lg text-sm">
                     Réserver
                 </a>
             </div>
 
-            <!-- Menu Mobile Hamburger -->
             <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-green">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
-        <!-- Menu Mobile Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <nav class="flex flex-col p-4 gap-4 text-center">
                 <a href="#gite" class="block py-2 text-gray-700 font-medium">Le Gîte</a>
@@ -136,7 +128,6 @@
         </div>
     </header>
 
-    <!-- B) HERO SECTION -->
     <section class="hero-bg h-screen min-h-[600px] flex items-center justify-center text-center px-4 relative">
         <div class="max-w-4xl text-white z-10 animate-fade-in-up">
             <span class="uppercase tracking-widest text-sm md:text-base font-semibold text-brand-gold mb-4 block shadow-black drop-shadow-md">Bienvenue à Lamagistère</span>
@@ -159,7 +150,6 @@
         </div>
     </section>
 
-    <!-- C) LE GÎTE -->
     <section id="gite" class="py-20 bg-brand-beige">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -190,18 +180,19 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Image d'illustration salon/intérieur -->
+                
                 <div class="rounded-xl overflow-hidden shadow-2xl h-80 md:h-96 relative">
-                    <img src="7.jpeg" 
+                    <img src="7.webp" 
                          alt="Séjour lumineux du gîte" 
+                         loading="lazy"
+                         width="800" height="600"
                          class="w-full h-full object-cover">
-                         <div class="absolute bottom-4 right-4 bg-white/90 px-3 py-1 text-xs text-gray-500 rounded backdrop-blur">Le Séjour</div>
+                    <div class="absolute bottom-4 right-4 bg-white/90 px-3 py-1 text-xs text-gray-500 rounded backdrop-blur">Le Séjour</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NOUVELLE SECTION : DÉTAIL DES CHAMBRES -->
     <section id="chambres" class="py-16 bg-white border-t border-gray-100">
         <div class="container mx-auto px-4">
             <div class="text-center mb-10">
@@ -210,12 +201,12 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Chambre 1 -->
                 <div class="group bg-brand-beige rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
                     <div class="h-64 overflow-hidden relative">
-                        <!-- Placeholder : À remplacer par photo Chambre 1 -->
-                        <img src="10.jpeg" 
+                        <img src="10.webp" 
                              alt="Chambre 1" 
+                             loading="lazy"
+                             width="600" height="400"
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
@@ -231,12 +222,12 @@
                     </div>
                 </div>
 
-                <!-- Chambre 2 -->
                 <div class="group bg-brand-beige rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
                     <div class="h-64 overflow-hidden relative">
-                        <!-- Placeholder : À remplacer par photo Chambre 2 -->
-                        <img src="12.jpeg" 
+                         <img src="12.webp" 
                              alt="Chambre 2" 
+                             loading="lazy"
+                             width="600" height="400"
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
@@ -252,12 +243,12 @@
                     </div>
                 </div>
 
-                <!-- Chambre 3 -->
                 <div class="group bg-brand-beige rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
                     <div class="h-64 overflow-hidden relative">
-                        <!-- Placeholder : À remplacer par photo Chambre 3 -->
-                        <img src="11.jpeg" 
+                         <img src="11.webp" 
                              alt="Chambre 3" 
+                             loading="lazy"
+                             width="600" height="400"
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
@@ -280,16 +271,13 @@
         </div>
     </section>
 
-    <!-- D) ÉQUIPEMENTS -->
     <section id="equipements" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl text-brand-dark mb-4">Équipements & Confort</h2>
                 <p class="text-gray-600">Tout ce dont vous avez besoin pour un séjour sans soucis.</p>
             </div>
-
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Carte Équipement -->
                 <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
                     <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
                         <i class="fa-solid fa-water-ladder text-2xl"></i>
@@ -297,7 +285,6 @@
                     <h3 class="font-bold text-lg mb-2">Piscine Privée</h3>
                     <p class="text-sm text-gray-500">Pour se rafraîchir en été</p>
                 </div>
-
                 <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
                     <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
                         <i class="fa-solid fa-square-parking text-2xl"></i>
@@ -305,63 +292,26 @@
                     <h3 class="font-bold text-lg mb-2">Parking</h3>
                     <p class="text-sm text-gray-500">Stationnement facile sur place</p>
                 </div>
-
-                <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
+                 <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
                     <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
                         <i class="fa-solid fa-wifi text-2xl"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2">Connexion Wi-Fi</h3>
-                    <p class="text-sm text-gray-500">Haut débit (à confirmer)</p>
+                    <p class="text-sm text-gray-500">Haut débit</p>
                 </div>
-
-                <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
+                 <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
                     <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
                         <i class="fa-solid fa-kitchen-set text-2xl"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2">Cuisine Équipée</h3>
-                    <p class="text-sm text-gray-500">Pour préparer vos repas</p>
-                </div>
-                
-                <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
-                    <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
-                        <i class="fa-solid fa-sun text-2xl"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Extérieur Privatif</h3>
-                    <p class="text-sm text-gray-500">Terrasse et jardin</p>
-                </div>
-
-                <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
-                    <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
-                        <i class="fa-solid fa-tv text-2xl"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Espace Salon</h3>
-                    <p class="text-sm text-gray-500">Détente & Télévision</p>
-                </div>
-                
-                 <!-- Ajout générique pour remplir la grille -->
-                <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
-                    <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
-                        <i class="fa-solid fa-mattress-pillow text-2xl"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Linge de maison</h3>
-                    <p class="text-sm text-gray-500">Disponible (nous consulter)</p>
-                </div>
-
-                <div class="p-6 border border-gray-100 rounded-xl hover:shadow-lg transition text-center group bg-gray-50">
-                    <div class="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-green group-hover:text-white transition">
-                        <i class="fa-solid fa-shower text-2xl"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Salle de bain</h3>
-                    <p class="text-sm text-gray-500">Fonctionnelle & propre</p>
+                    <p class="text-sm text-gray-500">Complète</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- E) SECTION TRAVAILLEURS / CNPE -->
     <section id="cnpe" class="py-20 bg-brand-dark text-white relative overflow-hidden">
-        <!-- Image de fond subtile -->
-        <div class="absolute inset-0 opacity-20 bg-[url('https://scontent-cdg4-2.xx.fbcdn.net/v/t39.30808-6/531211634_122102063924970291_4233797857627805675_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=GrM7wcP4UkYQ7kNvwFCRfS3&_nc_oc=AdlLqVZXTHZ6q_1hOM0T7yWXgp5j-lExjYVo-wJ4NzTRGNg-jjBa90ZRi3sQe-O0u20&_nc_zt=23&_nc_ht=scontent-cdg4-2.xx&_nc_gid=f_7Ci4ev2Dmejh6fIiT90g&oh=00_Afl__1pEFHiBh22Fe_KZtfWUerEN7vde0TZCD5Y0PpkUUg&oe=694F7DEF')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('cnpe-bg.webp');"></div>
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -385,19 +335,11 @@
                                 <span class="text-gray-300 text-sm">Location à la semaine ou à la nuitée selon vos missions.</span>
                             </div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-brand-gold mt-1"></i>
-                            <div>
-                                <strong class="block text-white">Calme & Repos</strong>
-                                <span class="text-gray-300 text-sm">Environnement silencieux pour récupérer après votre service.</span>
-                            </div>
-                        </li>
                     </ul>
                     <a href="#reserver" class="inline-block mt-8 border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white px-6 py-3 rounded-full font-bold transition">
                         Demander un tarif pro
                     </a>
                 </div>
-                <!-- Carte simplifiée ou image pro -->
                 <div class="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20">
                     <div class="text-center">
                         <i class="fa-solid fa-car text-5xl text-white mb-4"></i>
@@ -415,7 +357,6 @@
         </div>
     </section>
 
-    <!-- F) GALERIE PHOTOS -->
     <section id="galerie" class="py-20 bg-brand-beige">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -423,69 +364,62 @@
                 <p class="text-gray-600">Découvrez votre futur lieu de séjour.</p>
             </div>
 
-            <!-- Note pour l'utilisateur -->
-            <div class="text-center text-xs text-gray-400 mb-6 italic">
-                * Les images ci-dessous sont des illustrations. Remplacez les liens 'src' par vos photos Facebook.
-            </div>
-
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px]">
-                <!-- Item 1 (Grand) -->
                 <div class="gallery-item md:col-span-2 md:row-span-2 h-full">
-                    <img src="3.jpeg" 
+                    <img src="3.webp" 
                          alt="Extérieur" 
                          loading="lazy"
+                         width="800" height="600"
                          onclick="openLightbox(this.src, 'Extérieur')">
                 </div>
                 
-                <!-- Item 2 -->
                 <div class="gallery-item h-full">
-                    <img src="13.jpeg" 
+                    <img src="13.webp" 
                          alt="Canal du Midi" 
                          loading="lazy"
+                         width="400" height="300"
                          onclick="openLightbox(this.src, 'Canal du Midi')">
                 </div>
 
-                <!-- Item 3 -->
                 <div class="gallery-item h-full">
-                    <img src="5.jpeg" 
+                    <img src="5.webp" 
                          alt="Parking Privé" 
                          loading="lazy"
+                         width="400" height="300"
                          onclick="openLightbox(this.src, 'Parking Privé')">
                 </div>
 
-                <!-- Item 4 -->
                 <div class="gallery-item h-full">
-                    <img src="14.jpeg" 
+                    <img src="14.webp" 
                          alt="Cuisine Équipée" 
                          loading="lazy"
+                         width="400" height="300"
                          onclick="openLightbox(this.src, 'Cuisine Équipée')">
                 </div>
 
-                <!-- Item 5 -->
                 <div class="gallery-item h-full">
-                    <img src="9.jpeg" 
+                    <img src="9.webp" 
                          alt="Salle de bain" 
                          loading="lazy"
+                         width="400" height="300"
                          onclick="openLightbox(this.src, 'Salle de bain')">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NOUVELLE SECTION : ACTUALITÉS FACEBOOK -->
     <section id="facebook" class="py-16 bg-white border-t border-gray-100">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl text-brand-dark mb-8 font-serif">Actualités du Gîte</h2>
-            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Suivez nos dernières publications, nos photos et la vie du gîte en direct sur Facebook.</p>
             
             <div class="flex justify-center">
-                <!-- Plugin Page Facebook -->
                 <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61579108748874&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
                         width="500" 
                         height="600" 
                         style="border:none;overflow:hidden;max-width:100%;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1);" 
                         scrolling="no" 
                         frameborder="0" 
+                        loading="lazy"
                         allowfullscreen="true" 
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                 </iframe>
@@ -499,9 +433,7 @@
         </div>
     </section>
 
-    <!-- G) LOCALISATION -->
     <section id="localisation" class="py-0 relative h-[500px] w-full bg-gray-200">
-        <!-- Iframe Google Maps centrée sur l'adresse fournie -->
         <iframe 
             width="100%" 
             height="100%" 
@@ -509,32 +441,29 @@
             scrolling="no" 
             marginheight="0" 
             marginwidth="0" 
+            loading="lazy"
             title="Localisation Gîte Lamagistère"
-            src="https://maps.google.com/maps?q=293%20ROUTE%20DE%20SAINT%20PIERRE%2C%2082360%20Lamagist%C3%A8re&t=&z=14&ie=UTF8&iwloc=&output=embed">
+            src="https://maps.google.com/maps?q=293+ROUTE+DE+SAINT+PIERRE+82360+Lamagistère&t=&z=13&ie=UTF8&iwloc=&output=embed">
         </iframe>
         
-        <!-- Carte info flottante -->
         <div class="absolute bottom-4 left-4 right-4 md:right-auto md:top-4 md:bottom-auto md:left-4 bg-white p-6 rounded-xl shadow-2xl max-w-sm z-10">
             <h3 class="font-bold text-xl text-brand-green mb-2">Nous trouver</h3>
             <p class="text-gray-600 mb-2"><i class="fa-solid fa-location-dot mr-2 text-brand-gold"></i> 293 Route de Saint Pierre<br>82360 Lamagistère, France</p>
             <p class="text-sm text-brand-green font-medium mt-2">
                 <i class="fa-solid fa-water mr-1"></i> À proximité du canal latéral à la Garonne
             </p>
-            <a href="https://www.google.com/maps/dir//293+Rte+de+Saint-Pierre,+82360+Lamagistère/@44.1332997,0.8357731,17z" target="_blank" class="block mt-4 text-center border border-gray-300 py-2 rounded text-sm hover:bg-gray-50">Itinéraire GPS</a>
+            <a href="https://goo.gl/maps/VotreLienGoogleMaps" target="_blank" class="block mt-4 text-center border border-gray-300 py-2 rounded text-sm hover:bg-gray-50">Itinéraire GPS</a>
         </div>
     </section>
 
-    <!-- H) RÉSERVER -->
     <section id="reserver" class="py-20 bg-white">
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="bg-brand-beige rounded-2xl shadow-xl overflow-hidden">
                 <div class="md:flex">
-                    <!-- Infos Contact (Gauche) -->
                     <div class="md:w-1/3 bg-brand-green text-white p-8 flex flex-col justify-between">
                         <div>
                             <h3 class="text-2xl font-serif mb-6">Contactez-nous</h3>
-                            <p class="mb-6 opacity-90 text-sm">Réponse rapide garantie. N'hésitez pas à nous appeler pour vérifier les disponibilités.</p>
-                            
+                            <p class="mb-6 opacity-90 text-sm">Réponse rapide garantie.</p>
                             <div class="space-y-4">
                                 <a href="tel:+33674295629" class="flex items-center gap-3 hover:text-brand-gold transition">
                                     <i class="fa-solid fa-phone"></i>
@@ -546,52 +475,41 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="mt-8">
-                            <i class="fa-solid fa-quote-left text-brand-gold text-4xl opacity-50"></i>
-                            <p class="italic text-sm mt-2">"Un accueil chaleureux pour un séjour réussi."</p>
-                        </div>
                     </div>
-
-                    <!-- Formulaire (Droite) -->
                     <div class="md:w-2/3 p-8">
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Demande de réservation</h3>
                         <form id="bookingForm" class="space-y-4">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
-                                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green focus:border-transparent outline-none transition" placeholder="Votre nom">
+                                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green outline-none" placeholder="Votre nom">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-                                    <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green focus:border-transparent outline-none transition" placeholder="06 XX XX XX XX">
+                                    <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green outline-none" placeholder="06 XX XX XX XX">
                                 </div>
                             </div>
-
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green focus:border-transparent outline-none transition" placeholder="votre@email.com">
+                                <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green outline-none">
                             </div>
-
-                            <div class="grid md:grid-cols-2 gap-4">
+                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Arrivée souhaitée</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Arrivée</label>
                                     <input type="date" id="arrival" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Départ souhaité</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Départ</label>
                                     <input type="date" id="departure" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green outline-none">
                                 </div>
                             </div>
-
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Message (Nb de personnes, motif...)</label>
-                                <textarea id="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green focus:border-transparent outline-none transition" placeholder="Bonjour, je souhaite réserver pour 4 personnes..."></textarea>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-green outline-none"></textarea>
                             </div>
-
                             <button type="submit" class="w-full bg-brand-green hover:bg-brand-dark text-white font-bold py-3 rounded transition shadow-md flex justify-center items-center gap-2">
                                 <i class="fa-regular fa-paper-plane"></i> Envoyer la demande par email
                             </button>
-                            <p class="text-xs text-center text-gray-500 mt-2">Cela ouvrira votre application de messagerie pré-remplie.</p>
                         </form>
                     </div>
                 </div>
@@ -599,7 +517,6 @@
         </div>
     </section>
 
-    <!-- I) FOOTER -->
     <footer class="bg-gray-900 text-gray-300 py-10 border-t border-gray-800">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -607,34 +524,27 @@
                     <h4 class="text-xl font-serif text-white font-bold mb-2">Maison Familiale Lamagistère</h4>
                     <p class="text-sm">293 Route de Saint Pierre, 82360 Lamagistère</p>
                 </div>
-                
                 <div class="flex gap-4">
                     <a href="https://www.facebook.com/profile.php?id=61579108748874" target="_blank" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="tel:+33674295629" class="w-10 h-10 rounded-full bg-brand-green text-white flex items-center justify-center hover:bg-green-700 transition">
-                        <i class="fa-solid fa-phone"></i>
-                    </a>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-xs text-gray-500">
-                &copy; <script>document.write(new Date().getFullYear())</script> Maison Familiale Lamagistère. Tous droits réservés.
+                © <script>document.write(new Date().getFullYear())</script> Maison Familiale Lamagistère.
             </div>
         </div>
     </footer>
 
-    <!-- LIGHTBOX MODAL -->
     <div id="lightbox" class="fixed inset-0 z-[60] bg-black/90 hidden justify-center items-center p-4" onclick="closeLightbox()">
-        <button class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300">&times;</button>
+        <button class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300">×</button>
         <div class="max-w-4xl w-full" onclick="event.stopPropagation()">
             <img id="lightbox-img" src="" alt="Agrandissement" class="w-full h-auto max-h-[90vh] object-contain rounded shadow-2xl">
             <p id="lightbox-caption" class="text-white text-center mt-4 font-serif text-lg"></p>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // 1. Menu Mobile Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
@@ -642,17 +552,14 @@
             menu.classList.toggle('hidden');
         });
 
-        // Fermer le menu mobile quand on clique sur un lien
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
             });
         });
 
-        // 2. Formulaire Mailto Intelligent
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
@@ -666,7 +573,6 @@
             window.location.href = `mailto:lacouture82360@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
 
-        // 3. Lightbox Logic
         function openLightbox(src, caption) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
@@ -674,8 +580,8 @@
             
             img.src = src;
             cap.textContent = caption;
-            lightbox.classList.add('active'); // Utilise flex via CSS
-            lightbox.classList.remove('hidden'); // Tailwind override si nécessaire
+            lightbox.classList.add('active'); 
+            lightbox.classList.remove('hidden'); 
             lightbox.style.display = 'flex';
         }
 
