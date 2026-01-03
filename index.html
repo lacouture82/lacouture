@@ -41,13 +41,20 @@
         body { font-family: 'Lato', sans-serif; color: #333; background-color: #F9F9F7; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         
-        /* OPTIMISATION 1 : Passage en WebP pour l'image de fond principale */
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('1.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+.hero-bg {
+    /* Configuration de base (Mobile) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('1.webp');
+    background-size: cover;       /* Remplit tout l'écran */
+    background-position: center;  /* Centre l'image */
+    background-attachment: scroll; /* IMPORTANT : Scroll normal sur mobile pour éviter le zoom */
+}
+
+/* Configuration Ordinateur (Écrans plus larges que 768px) */
+@media (min-width: 768px) {
+    .hero-bg {
+        background-attachment: fixed; /* On réactive l'effet parallaxe seulement sur PC */
+    }
+}
         /* Fallback pour les vieux navigateurs si besoin (optionnel) */
         .no-webp .hero-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('1.jpeg');
